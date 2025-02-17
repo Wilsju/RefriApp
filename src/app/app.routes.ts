@@ -2,9 +2,9 @@ import {Routes} from '@angular/router';
 import {SignUpComponent} from './Components/Autenticacion/sign-up/sign-up.component';
 import {LoginComponent} from './Components/Autenticacion/login/login.component';
 import {ServicesComponent} from './Components/services/services.component';
-import {NavMenuComponent} from './Components/nav-menu/nav-menu.component';
 import {HomeComponent} from './Components/home/home.component';
 import {HistorialComponent} from './Components/historial/historial.component';
+import {SolicitarComponent} from './Components/Cliente/solicitar/solicitar.component';
 
 
 export const routes: Routes = [
@@ -20,6 +20,9 @@ export const routes: Routes = [
   {
     path: 'services',
     component: ServicesComponent
+  },{
+    path: 'services/:id',
+    component: SolicitarComponent
   },
   {
     path: 'home',
@@ -31,7 +34,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/Inicio',
+    redirectTo: '/home',
     pathMatch: 'full'
   }
 ];

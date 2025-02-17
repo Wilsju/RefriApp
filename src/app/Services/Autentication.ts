@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal, WritableSignal} from '@angular/core';
 import {createClient, SupabaseClient} from '@supabase/supabase-js';
 import {environment} from '../../environments/environment';
 
@@ -6,9 +6,20 @@ import {environment} from '../../environments/environment';
 @Injectable({providedIn: 'root'})
 export class Autentificacion {
   private supabase: SupabaseClient;
+  private _rolUsuario: WritableSignal<string | null> = signal(null);
+  rolUsuario = this._rolUsuario.asReadonly();
 
   constructor() {
     this.supabase = createClient(environment.SupabaseUrl, environment.SupabaseKey);
+
+    this.supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        const role = session.user.user_metadata['role'] as string;
+        this._rolUsuario.set(role);
+      } else {
+        this._rolUsuario.set(null);
+      }
+    });
   }
 
   async registrar(Email: string, password: string, Nombre: string, Direccion: string, Telefono: string, TelefonoAux: string | null) {
@@ -45,6 +56,31 @@ export class Autentificacion {
     const result = await this.supabase.auth.signInWithPassword({email: Email, password: password});
     return result;
   }
+
+  async logout() {
+    await this.supabase.auth.signOut();
+  }
+
+  async obtenerUsuarioIdActual() {
+
+    if (this.rolUsuario() === null) {
+      return {id: null, error: "No eres cliente. Inicia seccion."};
+    }
+    const userId = await this.supabase.auth.getUser();
+
+    const {data: Usuario, error} = await this.supabase
+      .from('Usuarios')
+      .select('id')
+      .eq("AuthId", userId.data.user?.id)
+      .limit(1);
+    if (Usuario !== null) {
+      return {id: Usuario[0].id, error: null};
+    } else {
+      return {id: null, error: "Cliente no encontrado"};
+
+    }
+  }
+
 
 
 }

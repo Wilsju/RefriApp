@@ -1,24 +1,44 @@
 <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-4xl mx-auto">
-    <!--  <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Our Services</h2> -->
-    <div class="grid grid-cols-1 gap-8">
-      <!-- Service 1 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Service 1</h3>
-        <p class="text-gray-600">Description for Service 1. This is a sample description to illustrate the service.</p>
-      </div>
+    <h2 class="text-3xl font-bold text-center text-blue-800 mb-8 underline">Nuestros servicios</h2>
+    <div class="flex  gap-8">
+      @for (serv of Servicios; track $index) {
+        <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white p-6 text-center">
+          <h2 class="font-bold text-2xl text-gray-900 mb-4">{{ serv.Nombre }}</h2>
+          <p class="text-gray-600 text-lg mb-6">{{ serv.Descripcion }}</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 justify-center text-gray-900 font-semibold">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                   viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+              </svg>
+              <p>Precio: {{ serv.Precio }} DOP</p>
+            </div>
 
-      <!-- Service 2 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Service 2</h3>
-        <p class="text-gray-600">Description for Service 2. This is a sample description to illustrate the service.</p>
-      </div>
+            <div class="flex items-center gap-2 justify-center text-gray-900 font-semibold">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="1.5"
+                   viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+              </svg>
+              <p>{{ serv.Duracion }} horas</p>
+            </div>
+          </div>
 
-      <!-- Service 3 -->
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-        <h3 class="text-xl font-semibold text-gray-700 mb-4">Service 3</h3>
-        <p class="text-gray-600">Description for Service 3. This is a sample description to illustrate the service.</p>
-      </div>
+          <!-- Botón -->
+          <button
+            routerLink="{{serv.id}}"
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
+            Solicitar
+          </button>
+        </div>
+      } @empty {
+        <h2 class="text-center text-blue-500 text-3xl font-bold underline p-5"><span
+          class="text-red-500 decoration-red-500">Upps!</span> No tenemos servicios disponibles en este momento.</h2>
+      }
+
+
     </div>
   </div>
 </div>
