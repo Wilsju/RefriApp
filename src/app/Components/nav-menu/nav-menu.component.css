@@ -2,6 +2,6 @@
   @apply text-blue-600 border-b-2 border-blue-600 dark:text-blue-500 dark:border-blue-500;
 }
 
-.activo .icono {
-  @apply text-blue-600 dark:text-blue-500;
+.activo .aut{
+  @apply text-white border-b-2 border-blue-200 dark:text-blue-500 dark:border-blue-100;
 }

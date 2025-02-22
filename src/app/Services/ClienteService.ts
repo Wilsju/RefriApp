@@ -52,6 +52,14 @@ export class ClienteService {
 
   }
 
+
+  async ObtenerCitas(clienteid : number){
+
+    let { data: Citas, error } = await this.supabase
+      .from('Citas')
+      .select('*');
+
+  }
 }
 
 

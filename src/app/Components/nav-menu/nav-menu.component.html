@@ -1,4 +1,5 @@
-<div class="border-b border-gray-200 dark:border-gray-700 flex justify-center">
+<div class="border-b border-gray-200 dark:border-gray-700 flex justify-center relative">
+  <img src="/pngegg.png" routerLink="home" alt="Logo" class="absolute left-0 top-0 w-10 h-10 m-2">
   <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 justify-center">
 
     <li class="me-2">
@@ -24,23 +25,74 @@
         Servicios
       </a>
     </li>
+    <!--    Solo personas registradas-->
+    @if (rolActual() !== null) {
+      <li class="me-2">
+        <a routerLink="citas" routerLinkActive="activo"
+           class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+          <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+               viewBox="0 0 18 18">
+            <path
+              d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
+          </svg>
+          citas
+        </a>
+      </li>
+    }
+    <!--Solo clientes-->
+    @if (rolActual() == "cliente") {
+      <li class="me-2">
+        <a routerLink="historial" routerLinkActive="activo"
+           class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+          <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+               viewBox="0 0 20 20">
+            <path
+              d="M5 11.424V1a1 1 0 1 0-2 0v10.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.228 3.228 0 0 0 0-6.152ZM19.25 14.5A3.243 3.243 0 0 0 17 11.424V1a1 1 0 0 0-2 0v10.424a3.227 3.227 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.243 3.243 0 0 0 2.25-3.076Zm-6-9A3.243 3.243 0 0 0 11 2.424V1a1 1 0 0 0-2 0v1.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0V8.576A3.243 3.243 0 0 0 13.25 5.5Z"/>
+          </svg>
+          Historial
+        </a>
+      </li>
+    } @else if (rolActual() == "admin") {
+      <li class="me-2">
+        <a routerLink="adminSolicitudes" routerLinkActive="activo"
+           class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+          <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+               viewBox="0 0 20 20">
+            <path
+              d="M5 11.424V1a1 1 0 1 0-2 0v10.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.228 3.228 0 0 0 0-6.152ZM19.25 14.5A3.243 3.243 0 0 0 17 11.424V1a1 1 0 0 0-2 0v10.424a3.227 3.227 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.243 3.243 0 0 0 2.25-3.076Zm-6-9A3.243 3.243 0 0 0 11 2.424V1a1 1 0 0 0-2 0v1.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0V8.576A3.243 3.243 0 0 0 13.25 5.5Z"/>
+          </svg>
+          Admin Solicitudes
+        </a>
+      </li>
+    }
 
-    <li class="me-2">
-      <a routerLink="historial" routerLinkActive="activo"
-         class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-        <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-             viewBox="0 0 20 20">
-          <path
-            d="M5 11.424V1a1 1 0 1 0-2 0v10.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.228 3.228 0 0 0 0-6.152ZM19.25 14.5A3.243 3.243 0 0 0 17 11.424V1a1 1 0 0 0-2 0v10.424a3.227 3.227 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.243 3.243 0 0 0 2.25-3.076Zm-6-9A3.243 3.243 0 0 0 11 2.424V1a1 1 0 0 0-2 0v1.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0V8.576A3.243 3.243 0 0 0 13.25 5.5Z"/>
-        </svg>
-        Historial
-      </a>
-    </li>
-    <button routerLink="login" class=" text-blue-700 underline mr-5" >
-      Iniciar
-    </button>
-    <button routerLink="registrar" class=" text-blue-600">
-      Registrar
-    </button>
   </ul>
+
+  <ul class="absolute right-0 top-0 flex text-sm font-medium text-gray-500 dark:text-gray-400">
+    @if (rolActual() == null) {
+      <!-- Botón de Iniciar -->
+      <li class="me-3 mt-2">
+        <a routerLink="login" routerLinkActive="activo.aut"
+           class="text-blue-500 inline-flex items-center justify-center p-2 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
+          Iniciar Seccion
+        </a>
+      </li>
+      <!-- Botón de Registrar -->
+      <li class="me-3 mt-2">
+        <a routerLink="registrar" routerLinkActive="activo.aut"
+           class="text-blue-500 inline-flex items-center justify-center p-2 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
+          Registrar
+        </a>
+      </li>
+    } @else {
+      <li class="me-3 mt-2">
+      <span (click)="CerrarSecion()" routerLinkActive="activo.aut" role="button"
+            class="text-blue-700 inline-flex items-center justify-center p-2 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
+        Cerrar Seccion
+      </span>
+      </li>
+    }
+
+  </ul>
+
 </div>

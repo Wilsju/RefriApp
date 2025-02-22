@@ -14,7 +14,7 @@ export class Autentificacion {
 
     this.supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
-        const role = session.user.user_metadata['role'] as string;
+        const role = session.user.user_metadata['rol'] as string;
         this._rolUsuario.set(role);
       } else {
         this._rolUsuario.set(null);

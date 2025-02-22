@@ -6,6 +6,9 @@ import {HomeComponent} from './Components/home/home.component';
 import {HistorialComponent} from './Components/historial/historial.component';
 import {SolicitarComponent} from './Components/Cliente/solicitar/solicitar.component';
 
+import {SolicitudesAdminComponent} from './Components/Admin/solicitudes/solicitudes.component';
+import {CitasComponent} from './Components/citas/citas.component';
+
 
 export const routes: Routes = [
 
@@ -20,7 +23,7 @@ export const routes: Routes = [
   {
     path: 'services',
     component: ServicesComponent
-  },{
+  }, {
     path: 'services/:id',
     component: SolicitarComponent
   },
@@ -32,6 +35,17 @@ export const routes: Routes = [
     path: 'historial',
     component: HistorialComponent
   },
+
+  {
+    path: "citas",
+    component: CitasComponent
+  },
+  {
+    path: "adminSolicitudes",
+    component: SolicitudesAdminComponent
+  },
+
+
   {
     path: '',
     redirectTo: '/home',
