@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Autentificacion} from 'service/Autentication';
 import {Router} from '@angular/router';
+import {NotificationService} from 'service/NotificationService';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,8 +15,11 @@ import {Router} from '@angular/router';
 })
 export class SignUpComponent {
   form!: FormGroup;
+  private notificar = inject(NotificationService);
+  private AuthService = inject(Autentificacion);
+  private router = inject(Router);
 
-  constructor(private AuthService: Autentificacion, private router: Router) {
+  constructor() {
 
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -42,9 +46,10 @@ export class SignUpComponent {
       datos.auxtelefono
     );
     if (resultado.error) {
-      alert(resultado.error);
+
+      this.notificar.NotificarError(resultado.error);
     } else {
-      alert('registrado');
+      this.notificar.NotificarSucces('registrado');
      await this.router.navigate(['home']);
     }
 

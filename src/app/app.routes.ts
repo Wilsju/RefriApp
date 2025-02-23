@@ -7,7 +7,7 @@ import {HistorialComponent} from './Components/historial/historial.component';
 import {SolicitarComponent} from './Components/Cliente/solicitar/solicitar.component';
 
 import {SolicitudesAdminComponent} from './Components/Admin/solicitudes/solicitudes.component';
-import {CitasComponent} from './Components/citas/citas.component';
+import {CitasComponent} from './Components/Cliente/citas/citas.component';
 
 
 export const routes: Routes = [
@@ -35,7 +35,6 @@ export const routes: Routes = [
     path: 'historial',
     component: HistorialComponent
   },
-
   {
     path: "citas",
     component: CitasComponent

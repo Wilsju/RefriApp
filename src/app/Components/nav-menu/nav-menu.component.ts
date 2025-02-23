@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {NgClass} from '@angular/common';
 import {Autentificacion} from 'service/Autentication';
+import {NotificacionComponent} from '../notificacion/notificacion.component';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,7 +10,8 @@ import {Autentificacion} from 'service/Autentication';
     RouterOutlet,
     RouterLinkActive,
     RouterLink,
-    NgClass
+    NgClass,
+    NotificacionComponent
   ],
   templateUrl: './nav-menu.component.html',
   styleUrl: './nav-menu.component.css'

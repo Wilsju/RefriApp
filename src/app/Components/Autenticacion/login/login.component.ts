@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Autentificacion} from 'service/Autentication';
 import {Router, RouterLink} from '@angular/router';
+import {NotificationService} from 'service/NotificationService';
 
 
 @Component({
@@ -15,9 +16,11 @@ import {Router, RouterLink} from '@angular/router';
 })
 export class LoginComponent {
   form!: FormGroup;
+  private notificar = inject(NotificationService);
+  private AuthService = inject(Autentificacion);
+  private router = inject(Router);
 
-  constructor(private AuthService: Autentificacion, private router: Router) {
-
+  constructor() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -27,9 +30,8 @@ export class LoginComponent {
   async Iniciar() {
     const result = await this.AuthService.login(this.form.value.email, this.form.value.password);
     if (result.error) {
-      alert(result.error.message);
-    }
-    else{
+      this.notificar.NotificarError("Error al iniciar seccion");
+    } else {
       await this.router.navigate(['home']);
     }
 
