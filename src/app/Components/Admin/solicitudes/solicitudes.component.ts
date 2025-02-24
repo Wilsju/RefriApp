@@ -72,9 +72,9 @@ export class SolicitudesAdminComponent implements OnInit {
     await this.cargarSolicitudes();
   }
 
-  cambiosEnTecnicos(cambios: boolean) {
+  async cambiosEnTecnicos(cambios: boolean) {
     if (cambios) {
-      this.cargarSolicitudes();
+      await this.cargarSolicitudes();
       this.CitaActual = null;
     }
   }

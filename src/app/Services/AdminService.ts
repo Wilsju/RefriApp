@@ -20,7 +20,7 @@ export class AdminService {
   async ObtenerSolicitudes() {
     let {data: Solicitudes, error} = await this.supabase
       .from('Solicitudes')
-      .select('*,Usuarios(Nombre),Servicios(Nombre)')
+      .select('*,Usuarios(Nombre,Direccion,Telefono,AuxTelefono),Servicios(Nombre)')
       .order('Fecha', {ascending: false}) as { data: Solicitud[], error: any };
     return {solicitudes: Solicitudes, error: error};
 
@@ -59,9 +59,20 @@ export class AdminService {
   async ObtenerCitaPorSolicitudId(solicitudId: number) {
     const {data, error} = await this.supabase
       .from('Citas')
-      .select('*,Solicitudes(*,Usuarios(Nombre),Servicios(Nombre))')
+      .select('*,Solicitudes(*,Usuarios(Nombre,Direccion,Telefono,AuxTelefono),Servicios(Nombre))')
       .eq("SolicitudId", solicitudId) as { data: Cita[], error: any };
     return {cita: data[0], error: error};
+  }
+
+  async ObtenerCitas() {
+    const {data, error} = await this.supabase
+      .from('Citas')
+      .select('*,Solicitudes(*,Usuarios(Nombre,Direccion,Telefono,AuxTelefono),Servicios(Nombre))')
+      .order("Estado", {ascending: false}) as {
+      data: Cita[],
+      error: any
+    };
+    return {citas: data, error: error};
   }
 
 

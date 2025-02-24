@@ -5,6 +5,11 @@ export interface Solicitud {
   Fecha: string
   Hora: string
   Estado: string
-  Usuarios: {Nombre : string}
-  Servicios: {Nombre : string}
+  Usuarios: {
+    Nombre: string
+    Direccion: string
+    Telefono: string
+    AuxTelefono: string | null
+  }
+  Servicios: { Nombre: string }
 }

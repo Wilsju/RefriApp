@@ -8,7 +8,12 @@
     Hora: string
     Fecha: string
     Estado: string
-    Usuarios: { Nombre: string }
+    Usuarios: {
+      Nombre: string,
+      Direccion: string
+      Telefono: string
+      AuxTelefono: string | null
+    }
     Servicios: { Nombre: string }
     UsuarioId: number
     ServicioId: number

@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Servicio} from 'modelos/Servicio';
 import {EstadoSolicitud} from 'constantes/EstadoSolicitud';
 import {Autentificacion} from 'service/Autentication';
+import {Cita} from 'modelos/Cita';
 
 
 @Injectable({providedIn: 'root'})
@@ -52,6 +53,17 @@ export class ClienteService {
 
   }
 
+  async ObtenerCitasCliente() {
+    const idUsuario = await this.Auth.obtenerUsuarioIdActual();
+    const {data, error} = await this.supabase
+      .from('Citas')
+      .select('*,Solicitudes(*,Usuarios(Nombre,Direccion,Telefono,AuxTelefono),Servicios(Nombre))') as {
+      data: Cita[],
+      error: any
+    };
+
+    return {citas: data.filter(x => x.Solicitudes.UsuarioId == idUsuario.id), error: error};
+  }
 }
 
 

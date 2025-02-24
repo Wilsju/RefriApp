@@ -5,10 +5,13 @@ import {Solicitud} from 'modelos/Solicitud';
 import {Tecnico} from 'modelos/Tecnico';
 import {EstadoSolicitud} from 'constantes/EstadoSolicitud';
 import {Cita} from 'modelos/Cita';
+import {CitaComponent} from '../../Reutilizables/cita/cita.component';
 
 @Component({
   selector: 'app-asignar-tecnicos',
-  imports: [],
+  imports: [
+    CitaComponent
+  ],
   templateUrl: './asignar-tecnicos.component.html',
   styleUrl: './asignar-tecnicos.component.css'
 })
