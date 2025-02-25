@@ -1,0 +1,32 @@
+<div class="max-w-5xl mx-auto p-6">
+  <!-- Título centrado -->
+  <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📊 Reportes</h2>
+
+  <!-- Contenedor de los gráficos con Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Citas por Mes -->
+    <div class="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center">
+      <h5 class="text-lg font-semibold text-gray-700 mb-4">📅 Citas por Mes</h5>
+      <canvas id="chartMeses"></canvas>
+    </div>
+
+    <!-- Estados de Citas -->
+    <div class="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center">
+      <h5 class="text-lg font-semibold text-gray-700 mb-4">✅ Estados de Citas</h5>
+      <canvas id="chartEstadosCita"></canvas>
+    </div>
+
+    <!-- Servicios Más Solicitados -->
+    <div class="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center md:col-span-2">
+      <h5 class="text-lg font-semibold text-gray-700 mb-4">💼 Servicios Más Solicitados</h5>
+      <canvas id="chartServicios"></canvas>
+    </div>
+
+    <!-- Estado de Solicitud -->
+    <div class="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center md:col-span-2">
+      <h5 class="text-lg font-semibold text-gray-700 mb-4">📜 Historial Solicitudes</h5>
+      <canvas id="chartEstadosSolicitud"></canvas>
+    </div>
+  </div>
+</div>

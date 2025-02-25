@@ -1,0 +1,85 @@
+
+
+
+<section class="flex items-center justify-center min-h-screen bg-gray-100 p-6">
+  <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-lg">
+    <!-- Título -->
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">¡Regístrate ahora! 🚀</h1>
+
+    <!-- Formulario -->
+    <form [formGroup]="form">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Nombre -->
+        <div>
+          <label class="block text-blue-700 font-semibold mb-1" for="name">Nombre</label>
+          <input id="name" type="text" formControlName="nombre" placeholder="Nombre Completo"
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400">
+          @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+            <small class="text-red-500">Introduce un nombre válido...</small>
+          }
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <label class="block text-blue-700 font-semibold mb-1" for="phone">Teléfono</label>
+          <input id="phone" type="tel" formControlName="telefono" placeholder="123456789"
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400">
+          @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+            <small class="text-red-500">Introduce un teléfono válido...</small>
+          }
+        </div>
+
+        <!-- Teléfono Auxiliar -->
+        <div>
+          <label class="block text-blue-700 font-semibold mb-1" for="phoneAux">Teléfono Auxiliar</label>
+          <input id="phoneAux" type="tel" formControlName="auxtelefono" placeholder="Opcional"
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400">
+        </div>
+
+        <!-- Dirección -->
+        <div>
+          <label class="block text-blue-700 font-semibold mb-1" for="address">Dirección</label>
+          <input id="address" type="text" formControlName="direccion" placeholder="Barrio / Calle #"
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400">
+          @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
+            <small class="text-red-500">Introduce una dirección válida...</small>
+          }
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="col-span-1 md:col-span-2">
+          <label class="block text-blue-700 font-semibold mb-1" for="email">Correo Electrónico</label>
+          <input id="email" type="email" formControlName="email" placeholder="ejemplo@email.com"
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400">
+          @if (form.get('email')?.invalid && form.get('email')?.touched) {
+            <small class="text-red-500">Introduce un email válido...</small>
+          }
+        </div>
+
+        <!-- Contraseña -->
+        <div class="col-span-1 md:col-span-2">
+          <label class="block text-blue-700 font-semibold mb-1" for="password">Contraseña</label>
+          <input id="password" type="password" formControlName="password" placeholder="********"
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-400">
+          @if (form.get('password')?.invalid && form.get('password')?.touched) {
+            <small class="text-red-500">Introduce una contraseña válida...</small>
+          }
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="flex flex-col gap-3 mt-6">
+        <button (click)="registrar()" type="submit"
+                class="w-full bg-gradient-to-r from-blue-500 to-teal-500 text-white font-bold py-2 rounded-md hover:opacity-90 transition-transform transform hover:scale-105">
+          Regístrate ahora 🚀
+        </button>
+
+        <button routerLink="/login"
+                class="w-full text-blue-600 font-semibold py-2 border border-blue-500 rounded-md hover:bg-blue-100 transition">
+          ¿Ya tienes cuenta? Inicia sesión
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

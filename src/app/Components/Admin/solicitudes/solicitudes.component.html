@@ -1,0 +1,99 @@
+<section class="container mx-auto p-6">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Solicitudes</h2>
+
+  <!-- Mostrar asignación de técnicos si hay una cita activa -->
+  @if (CitaActual !== null) {
+    <div>
+      <button (click)="CerrarAsignarTecnicos()"
+              class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md transition">
+        Volver
+      </button>
+      <app-asignar-tecnicos [cita]="CitaActual" (cambios)="cambiosEnTecnicos($event)"></app-asignar-tecnicos>
+    </div>
+  }
+
+  <!-- Mostrar lista de solicitudes -->
+  @if (CitaActual === null) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (solicitud of Solicitudes; track solicitud.id) {
+        <div class="bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+          <!-- Servicio -->
+          <h3 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+
+            {{ solicitud.Servicios.Nombre }}
+          </h3>
+
+          <!-- Información -->
+          <div class="text-gray-600 space-y-2">
+            <p class="flex items-center">
+              👤 <span class="ml-2"><strong>Cliente:</strong> {{ solicitud.Usuarios.Nombre }}</span>
+            </p>
+            <p class="flex items-center">
+              📍 <span class="ml-2"><strong>Ubicación:</strong> {{ solicitud.Usuarios.Direccion }}</span>
+            </p>
+            <p class="flex items-center">
+              📞 <span class="ml-2"><strong>Teléfono:</strong> {{ solicitud.Usuarios.Telefono }}</span>
+              <span class="text-gray-500 ml-2">(Aux: {{ solicitud.Usuarios.AuxTelefono }})</span>
+            </p>
+            <p class="flex items-center">
+              📅 <span class="ml-2"><strong>Fecha:</strong> {{ solicitud.Fecha | date: 'longDate' }}</span>
+            </p>
+          </div>
+
+          <!-- Estado con indicador de color -->
+          <div class="mt-4 flex items-center">
+            <span class="mr-2 font-semibold">Estado:</span>
+            <span class="flex items-center px-3 py-1 rounded-full text-sm font-medium"
+                  [ngClass]="{
+            'bg-green-100 text-green-700': solicitud.Estado === 'Aceptada',
+            'bg-orange-100 text-orange-700': solicitud.Estado === 'Pendiente',
+            'bg-red-100 text-red-700': solicitud.Estado === 'Rechazada'
+          }">
+        <span class="w-2.5 h-2.5 rounded-full mr-2"
+              [ngClass]="{
+                'bg-green-500': solicitud.Estado === 'Aceptada',
+                'bg-orange-500': solicitud.Estado === 'Pendiente',
+                'bg-red-500': solicitud.Estado === 'Rechazada'
+              }">
+        </span>
+              {{ solicitud.Estado }}
+    </span>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="mt-4">
+            @if (solicitud.Estado === 'Pendiente') {
+              <div class="flex justify-between">
+                <button (click)="Aceptar(solicitud.id)"
+                        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow-md transition">
+                  Aceptar
+                </button>
+                <button (click)="Rechazar(solicitud.id)"
+                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition">
+                  Rechazar
+                </button>
+              </div>
+            } @else if (solicitud.Estado === 'Aceptada') {
+              <button (click)="AsignarTecnicos(solicitud.id)"
+                      class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 mt-4 rounded-lg shadow-md transition">
+                Asignar Técnicos
+              </button>
+            }
+          </div>
+        </div>
+
+
+
+      }
+
+      <!-- Si no hay solicitudes -->
+      @if (Solicitudes.length === 0) {
+        <div class="col-span-full text-center">
+          <h2 class="text-green-600">No hay solicitudes disponibles</h2>
+        </div>
+      }
+    </div>
+  }
+</section>
+
+

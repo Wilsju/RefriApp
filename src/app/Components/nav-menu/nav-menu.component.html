@@ -1,0 +1,71 @@
+<app-notificacion></app-notificacion>
+<div class="border-b border-gray-200 dark:border-gray-700 flex items-center px-4 py-2 relative">
+  <!-- Logo -->
+  <img src="/pngegg.png" routerLink="home" alt="Logo" class="w-10 h-10">
+
+  <!-- Botón de menú para móviles -->
+  <button (click)="btnClickMenu()" id="menuToggle"
+          class="md:hidden text-gray-500 dark:text-gray-400 focus:outline-none ml-auto">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd"
+            d="M3 5h14a1 1 0 110 2H3a1 1 0 110-2zm0 4h14a1 1 0 110 2H3a1 1 0 110-2zm0 4h14a1 1 0 110 2H3a1 1 0 110-2z"
+            clip-rule="evenodd"></path>
+    </svg>
+  </button>
+
+  <!-- Menú lateral (móvil) -->
+  <div id="menu"
+       class="z-50 fixed inset-y-0 left-0 z-300 w-64 bg-white   transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:flex md:flex-grow md:justify-center">
+
+    <div class="md:hidden flex flex-col items-center py-4">
+      <img src="/pngegg.png" alt="Logo" class="w-20 h-20" routerLink="home" (click)="cerrarMenu()">
+      <p class="text-gray-700 dark:text-gray-300 mt-2 text-lg font-semibold">RefriApp</p>
+    </div>
+    <ul class="flex flex-col md:flex-row md:space-x-6 text-gray-500 dark:text-gray-400 text-sm font-medium p-4 md:p-0">
+      <li><a routerLink="home" routerLinkActive="activo" (click)="cerrarMenu()"
+             class="block py-2 px-4 hover:text-gray-600">Inicio</a></li>
+      <li><a routerLink="services" (click)="cerrarMenu()" routerLinkActive="activo"
+             class="block py-2 px-4 hover:text-gray-600">Servicios</a></li>
+
+      @if (rolActual() !== null) {
+        <li><a routerLink="citas" routerLinkActive="activo" (click)="cerrarMenu()"
+               class="block py-2 px-4 hover:text-gray-600">Citas</a></li>
+      }
+
+      @if (rolActual() == "admin") {
+        <li><a routerLink="adminSolicitudes" routerLinkActive="activo" (click)="cerrarMenu()"
+               class="block py-2 px-4 hover:text-gray-600"> Solicitudes</a></li>
+        <li><a routerLink="reportes" routerLinkActive="activo" (click)="cerrarMenu()"
+               class="block py-2 px-4 hover:text-gray-600">Reportes</a></li>
+      }
+    </ul>
+
+    <!-- Botones de autenticación (solo en móvil) -->
+    <div class="md:hidden flex flex-col space-y-2 p-4">
+      @if (rolActual() == null) {
+        <a routerLink="login" (click)="cerrarMenu()"
+           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Iniciar
+          Sesión</a>
+        <a routerLink="registrar" (click)="cerrarMenu()"
+           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
+      } @else {
+        <span (click)="CerrarSecion()" (click)="cerrarMenu()"
+              class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
+      }
+    </div>
+  </div>
+
+  <!-- Botones de autenticación (solo en escritorio) -->
+  <div class="hidden md:flex flex-row space-x-2 ml-auto">
+    @if (rolActual() == null) {
+      <a routerLink="login" (click)="cerrarMenu()"
+         class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Iniciar
+        Sesión</a>
+      <a routerLink="registrar" (click)="cerrarMenu()"
+         class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
+    } @else {
+      <span (click)="CerrarSecion()" (click)="cerrarMenu()"
+            class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
+    }
+  </div>
+</div>

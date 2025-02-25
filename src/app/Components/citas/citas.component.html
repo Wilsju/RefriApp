@@ -1,0 +1,40 @@
+<div class="min-h-screen mx-auto p-4 bg-gray-100">
+  <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Citas</h2>
+
+  @if (citaUsar) {
+    <button (click)="AsignarTecnicos(null)"
+            class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md transition">
+      Volver
+    </button>
+    @if (this.editarEstado) {
+      <app-cambiar-estado [cita]="citaUsar" (cambios)="cambiosEnPropiedad($event)"></app-cambiar-estado>
+    } @else {
+      <app-asignar-tecnicos [cita]="citaUsar" (cambios)="cambiosEnPropiedad($event)"></app-asignar-tecnicos>
+    }
+  } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      @for (cita of citas; track $index) {
+        <cita-component [cita]="cita">
+
+          @if (rolActual() == "admin") {
+            <button
+              (click)="cambiarEstadoCitaAdmin(cita)"
+              class="bg-green-700 hover:bg-green-600 mr-2 text-white px-4 py-2 mt-4 rounded-lg shadow-md transition">
+              Cambiar Estado
+            </button>
+            @if (cita.Estado === EstadoCita.Pendiente) {
+              <button
+                (click)="AsignarTecnicos(cita)"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 mt-4 rounded-lg shadow-md transition">
+                Asignar Técnicos
+              </button>
+            }
+
+          }
+        </cita-component>
+      }
+
+    </div>
+  }
+</div>

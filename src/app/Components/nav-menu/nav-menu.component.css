@@ -1,0 +1,22 @@
+.activo {
+  @apply text-blue-600 border-b-2 border-blue-600 dark:text-blue-500 dark:border-blue-500;
+}
+
+.activo .aut{
+  @apply text-white border-b-2 border-blue-200 dark:text-blue-500 dark:border-blue-100;
+}
+.nav-link {
+  @apply flex items-center px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 transition;
+}
+
+.icono {
+  @apply w-4 h-4 mr-2;
+}
+
+.btn {
+  @apply px-4 py-2 border rounded-md text-blue-600 border-blue-500 hover:bg-blue-500 hover:text-white transition;
+}
+
+.btn-red {
+  @apply text-red-600 border-red-500 hover:bg-red-500 hover:text-white;
+}
