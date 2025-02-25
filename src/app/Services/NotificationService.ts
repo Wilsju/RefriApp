@@ -4,9 +4,15 @@
 @Injectable({providedIn: 'root'})
 export class NotificationService {
 
-  private _notificaction: WritableSignal<{ message: string, typo: "success" | "error" } | null> = signal(null);
+  private _notificaction: WritableSignal<{ message: string, typo: "success" | "error" | "warning" } | null> = signal(null);
   notificacion = this._notificaction.asReadonly();
 
+  NotificarFaltaLoguearse(mensaje : string){
+    this._notificaction.set(null);
+    setTimeout(() => { this._notificaction.set(null); }, 2000);
+    this._notificaction.set({message : mensaje, typo: "warning"});
+
+  }
 
   NotificarSucces(mensaje: string) {
     this.ClearNotification();

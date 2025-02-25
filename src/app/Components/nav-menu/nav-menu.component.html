@@ -1,100 +1,71 @@
 <app-notificacion></app-notificacion>
-<div class="border-b border-gray-200 dark:border-gray-700 flex justify-center relative">
-  <img src="/pngegg.png" routerLink="home" alt="Logo" class="absolute left-0 top-0 w-10 h-10 m-2">
-  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 justify-center">
+<div class="border-b border-gray-200 dark:border-gray-700 flex items-center px-4 py-2 relative">
+  <!-- Logo -->
+  <img src="/pngegg.png" routerLink="home" alt="Logo" class="w-10 h-10">
 
-    <li class="me-2">
-      <a routerLink="home" routerLinkActive="activo"
-         class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-        <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-             viewBox="0 0 20 20">
-          <path
-            d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
-        </svg>
-        Inicio
-      </a>
-    </li>
+  <!-- Botón de menú para móviles -->
+  <button (click)="btnClickMenu()" id="menuToggle"
+          class="md:hidden text-gray-500 dark:text-gray-400 focus:outline-none ml-auto">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd"
+            d="M3 5h14a1 1 0 110 2H3a1 1 0 110-2zm0 4h14a1 1 0 110 2H3a1 1 0 110-2zm0 4h14a1 1 0 110 2H3a1 1 0 110-2z"
+            clip-rule="evenodd"></path>
+    </svg>
+  </button>
 
-    <li class="me-2">
-      <a routerLink="services" routerLinkActive="activo"
-         class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-        <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-             viewBox="0 0 18 18">
-          <path
-            d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-        </svg>
-        Servicios
-      </a>
-    </li>
-    <!--    Solo personas registradas-->
-    @if (rolActual() !== null) {
-      <li class="me-2">
-        <a routerLink="citas" routerLinkActive="activo"
-           class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-          <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-               viewBox="0 0 18 18">
-            <path
-              d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-          </svg>
-          Citas
-        </a>
-      </li>
-    }
-    <!--Solo clientes-->
-    @if (rolActual() == "cliente") {
+  <!-- Menú lateral (móvil) -->
+  <div id="menu"
+       class="z-50 fixed inset-y-0 left-0 z-300 w-64 bg-white   transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:flex md:flex-grow md:justify-center">
 
-    } @else if (rolActual() == "admin") {
-      <li class="me-2">
-        <a routerLink="adminSolicitudes" routerLinkActive="activo"
-           class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-          <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-               viewBox="0 0 20 20">
-            <path
-              d="M5 11.424V1a1 1 0 1 0-2 0v10.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.228 3.228 0 0 0 0-6.152ZM19.25 14.5A3.243 3.243 0 0 0 17 11.424V1a1 1 0 0 0-2 0v10.424a3.227 3.227 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.243 3.243 0 0 0 2.25-3.076Zm-6-9A3.243 3.243 0 0 0 11 2.424V1a1 1 0 0 0-2 0v1.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0V8.576A3.243 3.243 0 0 0 13.25 5.5Z"/>
-          </svg>
-          Admin Solicitudes
-        </a>
-      </li>
-      <li class="me-2">
-        <a routerLink="reportes" routerLinkActive="activo"
-           class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-          <svg class="w-4 h-4 me-2 icono" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-               viewBox="0 0 20 20">
-            <path
-              d="M5 11.424V1a1 1 0 1 0-2 0v10.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.228 3.228 0 0 0 0-6.152ZM19.25 14.5A3.243 3.243 0 0 0 17 11.424V1a1 1 0 0 0-2 0v10.424a3.227 3.227 0 0 0 0 6.152V19a1 1 0 1 0 2 0v-1.424a3.243 3.243 0 0 0 2.25-3.076Zm-6-9A3.243 3.243 0 0 0 11 2.424V1a1 1 0 0 0-2 0v1.424a3.228 3.228 0 0 0 0 6.152V19a1 1 0 1 0 2 0V8.576A3.243 3.243 0 0 0 13.25 5.5Z"/>
-          </svg>
-          Reportes
-        </a>
-      </li>
-    }
+    <div class="md:hidden flex flex-col items-center py-4">
+      <img src="/pngegg.png" alt="Logo" class="w-20 h-20" routerLink="home" (click)="cerrarMenu()">
+      <p class="text-gray-700 dark:text-gray-300 mt-2 text-lg font-semibold">RefriApp</p>
+    </div>
+    <ul class="flex flex-col md:flex-row md:space-x-6 text-gray-500 dark:text-gray-400 text-sm font-medium p-4 md:p-0">
+      <li><a routerLink="home" routerLinkActive="activo" (click)="cerrarMenu()"
+             class="block py-2 px-4 hover:text-gray-600">Inicio</a></li>
+      <li><a routerLink="services" (click)="cerrarMenu()" routerLinkActive="activo"
+             class="block py-2 px-4 hover:text-gray-600">Servicios</a></li>
 
-  </ul>
+      @if (rolActual() !== null) {
+        <li><a routerLink="citas" routerLinkActive="activo" (click)="cerrarMenu()"
+               class="block py-2 px-4 hover:text-gray-600">Citas</a></li>
+      }
 
-  <ul class="absolute right-0 top-0 flex text-sm font-medium text-gray-500 dark:text-gray-400">
+      @if (rolActual() == "admin") {
+        <li><a routerLink="adminSolicitudes" routerLinkActive="activo" (click)="cerrarMenu()"
+               class="block py-2 px-4 hover:text-gray-600"> Solicitudes</a></li>
+        <li><a routerLink="reportes" routerLinkActive="activo" (click)="cerrarMenu()"
+               class="block py-2 px-4 hover:text-gray-600">Reportes</a></li>
+      }
+    </ul>
+
+    <!-- Botones de autenticación (solo en móvil) -->
+    <div class="md:hidden flex flex-col space-y-2 p-4">
+      @if (rolActual() == null) {
+        <a routerLink="login" (click)="cerrarMenu()"
+           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Iniciar
+          Sesión</a>
+        <a routerLink="registrar" (click)="cerrarMenu()"
+           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
+      } @else {
+        <span (click)="CerrarSecion()" (click)="cerrarMenu()"
+              class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
+      }
+    </div>
+  </div>
+
+  <!-- Botones de autenticación (solo en escritorio) -->
+  <div class="hidden md:flex flex-row space-x-2 ml-auto">
     @if (rolActual() == null) {
-      <!-- Botón de Iniciar -->
-      <li class="me-3 mt-2">
-        <a routerLink="login" routerLinkActive="activo.aut"
-           class="text-blue-500 inline-flex items-center justify-center p-2 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
-          Iniciar Seccion
-        </a>
-      </li>
-      <!-- Botón de Registrar -->
-      <li class="me-3 mt-2">
-        <a routerLink="registrar" routerLinkActive="activo.aut"
-           class="text-blue-500 inline-flex items-center justify-center p-2 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
-          Registrar
-        </a>
-      </li>
+      <a routerLink="login" (click)="cerrarMenu()"
+         class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Iniciar
+        Sesión</a>
+      <a routerLink="registrar" (click)="cerrarMenu()"
+         class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
     } @else {
-      <li class="me-3 mt-2">
-      <span (click)="CerrarSecion()" routerLinkActive="activo.aut" role="button"
-            class="text-blue-700 inline-flex items-center justify-center p-2 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors">
-        Cerrar Seccion
-      </span>
-      </li>
+      <span (click)="CerrarSecion()" (click)="cerrarMenu()"
+            class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
     }
-
-  </ul>
-
+  </div>
 </div>

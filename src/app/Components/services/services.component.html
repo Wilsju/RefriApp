@@ -1,12 +1,19 @@
 <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-4xl mx-auto">
     <h2 class="text-3xl font-bold text-center text-blue-800 mb-8 underline">Nuestros servicios</h2>
-    <div class="flex  gap-8">
+
+    <!-- Cambio de flex a grid -->
+    @if (usuarioActual() == "admin") {
+      <span class="text-gray-500 underline" [routerLink]="['/add']">Agregar Servicio</span>
+    }
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
       @for (serv of Servicios; track $index) {
-        <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white p-6 text-center">
-          <h2 class="font-bold text-2xl text-gray-900 mb-4">{{ serv.Nombre }}</h2>
+        <div class="max-w-sm w-full rounded-lg overflow-hidden shadow-lg bg-white p-6 text-center">
+          <h2 class="font-bold text-2xl text-gray-900 mb-4">{{ serv.Nombre | titlecase }}</h2>
           <p class="text-gray-600 text-lg mb-6">{{ serv.Descripcion }}</p>
           <div class="space-y-2">
+
             <div class="flex items-center gap-2 justify-center text-gray-900 font-semibold">
               <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="1.5"
                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -24,21 +31,22 @@
               </svg>
               <p>{{ serv.Duracion }} horas</p>
             </div>
-          </div>
 
-          <!-- Botón -->
-          <button
-            routerLink="{{serv.id}}"
-            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
-            Solicitar
-          </button>
+          </div>
+          @if (usuarioActual() == "cliente") {
+            <!-- Botón -->
+            <button
+              routerLink="{{serv.id}}"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
+              Solicitar
+            </button>
+          }
         </div>
       } @empty {
-        <h2 class="text-center text-blue-500 text-3xl font-bold underline p-5"><span
-          class="text-red-500 decoration-red-500">Upps!</span> No tenemos servicios disponibles en este momento.</h2>
+        <h2 class="text-center text-blue-500 text-3xl font-bold underline p-5">
+          <span class="text-red-500 decoration-red-500">Upps!</span> No tenemos servicios disponibles en este momento.
+        </h2>
       }
-
-
     </div>
   </div>
 </div>

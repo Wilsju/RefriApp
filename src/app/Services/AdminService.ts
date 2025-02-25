@@ -75,7 +75,6 @@ export class AdminService {
     return {citas: data, error: error};
   }
 
-
   async ObtenerTecnicos() {
 
     let {data: Tecnicos, error} = await this.supabase
@@ -138,5 +137,21 @@ export class AdminService {
     };
   }
 
+
+  async AddService(Nombre: string, Descripcion: string, Precio: number, Duracion: number) {
+
+    const result = await this.supabase
+      .from("Servicios")
+      .insert(
+        {
+          "Nombre": Nombre,
+          "Descripcion": Descripcion,
+          "Precio": Precio,
+          "Duracion": Duracion,
+        }
+      ).select();
+
+    return result.error === null;
+  }
 
 }

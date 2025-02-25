@@ -9,7 +9,8 @@ import {NotificationService} from 'service/NotificationService';
 @Component({
   selector: 'app-solicitar',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './solicitar.component.html',
   styleUrl: './solicitar.component.css'
