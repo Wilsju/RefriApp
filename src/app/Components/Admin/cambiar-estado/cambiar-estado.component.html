@@ -9,17 +9,52 @@
       </div>
     }
 
+    <div class="bg-white p-6 rounded-xl shadow-lg ">
+      <!-- Título -->
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Estado actual: <span
+        class="text-blue-600">{{ original }}</span></h3>
 
-    <div>
-      <div class="mb-6">
-        <select [(ngModel)]="nuevoValor">
-          <option [value]="EstadoCita.Completada">{{ EstadoCita.Completada }}</option>
-          <option [value]="EstadoCita.Pendiente">{{ EstadoCita.Pendiente }}</option>
-          <option [value]="EstadoCita.Cancelada">{{ EstadoCita.Cancelada }}</option>
-        </select>
-        <button (click)="cambiar()">Cambiar</button>
-        <button (click)="cancelar()">Cancelar</button>
+      <!-- Selección de estado -->
+      <label class="block text-gray-600 font-medium mb-2">Cambiar a:</label>
+      <select [(ngModel)]="nuevoValor"
+              class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        <option [value]="EstadoCita.Completada"
+                [disabled]="nuevoValor===EstadoCita.Completada || EstadoCita.Completada == original">{{ EstadoCita.Completada }}
+        </option>
+        <option [value]="EstadoCita.Pendiente"
+                [disabled]="nuevoValor===EstadoCita.Pendiente || EstadoCita.Pendiente == original">{{ EstadoCita.Pendiente }}
+        </option>
+        <option [value]="EstadoCita.Cancelada"
+                [disabled]="nuevoValor===EstadoCita.Cancelada || EstadoCita.Cancelada == original">{{ EstadoCita.Cancelada }}
+        </option>
+      </select>
+
+      <!-- Botones -->
+      <div class="flex justify-between mt-4">
+        <button (click)="cambiar()"
+                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all">
+          Cambiar
+        </button>
+
+        <button (click)="cancelar()"
+                class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-all">
+          Cancelar
+        </button>
       </div>
     </div>
+
+    <!--    <div>-->
+    <!--      <div class="mb-6">-->
+    <!--        <h3>Estado actual : {{original}}</h3>-->
+    <!--        <label>Cambiar a -></label>-->
+    <!--        <select [(ngModel)]="nuevoValor">-->
+    <!--          <option [value]="EstadoCita.Completada">{{ EstadoCita.Completada }}</option>-->
+    <!--          <option [value]="EstadoCita.Pendiente">{{ EstadoCita.Pendiente }}</option>-->
+    <!--          <option [value]="EstadoCita.Cancelada">{{ EstadoCita.Cancelada }}</option>-->
+    <!--        </select>-->
+    <!--        <button (click)="cambiar()">Cambiar</button>-->
+    <!--        <button (click)="cancelar()">Cancelar</button>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 </section>

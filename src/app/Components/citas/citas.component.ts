@@ -61,10 +61,13 @@ export class CitasComponent implements OnInit {
 
 
   async cambiosEnPropiedad(cambios: boolean) {
+
     if (cambios) {
       await this.cargarCitas();
-      this.citaUsar = null;
     }
+    this.citaUsar = null;
+    this.editarEstado = false;
+
   }
 
   protected readonly EstadoCita = EstadoCita;

@@ -22,7 +22,7 @@ export class CambiarEstadoComponent implements OnInit {
   @Output() cambios = new EventEmitter<boolean>();
   private adminServ = inject(AdminService);
   private notificar = inject(NotificationService);
-  private original = "";
+   original = "";
   nuevoValor = "";
 
   protected readonly EstadoSolicitud = EstadoSolicitud;
