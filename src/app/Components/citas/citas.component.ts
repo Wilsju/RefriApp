@@ -7,12 +7,14 @@ import {NotificationService} from 'service/NotificationService';
 import {CitaComponent} from '../Reutilizables/cita/cita.component';
 import {EstadoCita} from 'constantes/EstadoCita';
 import {AsignarTecnicosComponent} from '../Admin/asignar-tecnicos/asignar-tecnicos.component';
+import {CambiarEstadoComponent} from '../Admin/cambiar-estado/cambiar-estado.component';
 
 @Component({
   selector: 'app-citas',
   imports: [
     CitaComponent,
-    AsignarTecnicosComponent
+    AsignarTecnicosComponent,
+    CambiarEstadoComponent
   ],
   templateUrl: './citas.component.html',
   styleUrl: './citas.component.css'
@@ -27,7 +29,7 @@ export class CitasComponent implements OnInit {
 
   rolActual = this.authServ.rolUsuario;
   citaUsar: Cita | null = null;
-
+  editarEstado: boolean = false;
 
   constructor() {
     effect(() => {
@@ -58,15 +60,24 @@ export class CitasComponent implements OnInit {
   }
 
 
-  async cambiosEnTecnicos(cambios: boolean) {
+  async cambiosEnPropiedad(cambios: boolean) {
     if (cambios) {
       await this.cargarCitas();
       this.citaUsar = null;
     }
   }
+
   protected readonly EstadoCita = EstadoCita;
 
   AsignarTecnicos(cita: Cita | null) {
+    this.editarEstado = false;
     this.citaUsar = cita;
   }
+
+  cambiarEstadoCitaAdmin(cita: Cita) {
+    this.editarEstado = true;
+    this.citaUsar = cita;
+  }
+
+
 }

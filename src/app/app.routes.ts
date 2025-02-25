@@ -8,6 +8,7 @@ import {SolicitarComponent} from './Components/Cliente/solicitar/solicitar.compo
 
 import {SolicitudesAdminComponent} from './Components/Admin/solicitudes/solicitudes.component';
 import {CitasComponent} from './Components/citas/citas.component';
+import {ReportesComponent} from './Components/Admin/reportes/reportes.component';
 
 
 
@@ -43,6 +44,9 @@ export const routes: Routes = [
   {
     path: "adminSolicitudes",
     component: SolicitudesAdminComponent
+  }, {
+    path: "reportes",
+    component: ReportesComponent
   },
 
   {

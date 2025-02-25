@@ -1,0 +1,25 @@
+<section class="bg-white shadow-md rounded-lg p-6">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800">Asignar Técnicos</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    @if (cita !== null) {
+      <div class="bg-gray-50 p-4 rounded-lg shadow">
+        <cita-component [cita]="cita"></cita-component>
+      </div>
+    }
+
+
+    <div>
+      <div class="mb-6">
+        <select [(ngModel)]="nuevoValor">
+          <option [value]="EstadoCita.Completada">{{ EstadoCita.Completada }}</option>
+          <option [value]="EstadoCita.Pendiente">{{ EstadoCita.Pendiente }}</option>
+          <option [value]="EstadoCita.Cancelada">{{ EstadoCita.Cancelada }}</option>
+        </select>
+        <button (click)="cambiar()">Cambiar</button>
+        <button (click)="cancelar()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</section>

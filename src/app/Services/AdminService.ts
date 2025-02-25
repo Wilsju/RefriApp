@@ -92,4 +92,51 @@ export class AdminService {
       .eq("id", citaId);
     return error === null;
   }
+
+  async ActualizarEstado(citaId: number, estado: string) {
+    const {data, error} = await this.supabase
+      .from("Citas")
+      .update(
+        {'Estado': estado})
+      .eq("id", citaId);
+    return error === null;
+  }
+
+
+  async ObtenerDatosReportes() {
+    const resultCitas = await this.ObtenerCitas();
+    const resultSolicitudes = await this.ObtenerSolicitudes();
+
+
+    const citas = resultCitas.citas;
+    const solicitudes = resultSolicitudes.solicitudes;
+    const agrupadoPorMes: { [mes: string]: number } = {};
+    const agrupadoPorEstadoCita: { [estado: string]: number } = {};
+    const agrupadoPorServicio: { [servicio: string]: number } = {};
+    const agrupadoPorEstadoSolicitud: { [estadoSolicitud: string]: number } = {};
+    solicitudes.forEach((solicitud) => {
+      agrupadoPorEstadoSolicitud[solicitud.Estado] = (agrupadoPorEstadoSolicitud[solicitud.Estado] || 0) + 1;
+    })
+    citas.forEach((cita) => {
+      const mes = cita.Solicitudes.Fecha.substring(0, 7);
+      agrupadoPorMes[mes] = (agrupadoPorMes[mes] || 0) + 1;
+
+      agrupadoPorEstadoCita[cita.Estado] = (agrupadoPorEstadoCita[cita.Estado] || 0) + 1;
+
+      const servicio = cita.Solicitudes.Servicios.Nombre;
+      agrupadoPorServicio[servicio] = (agrupadoPorServicio[servicio] || 0) + 1;
+    });
+
+    return {
+      agrupadoPorMes: Object.entries(agrupadoPorMes).map(([mes, cantidad]) => ({mes, cantidad})),
+      agrupadoPorEstadoCita: Object.entries(agrupadoPorEstadoCita).map(([estado, cantidad]) => ({estado, cantidad})),
+      agrupadoPorServicio: Object.entries(agrupadoPorServicio).map(([servicio, cantidad]) => ({servicio, cantidad})),
+      agrupadoPorEstadoSolicitud: Object.entries(agrupadoPorEstadoSolicitud).map(([estadoSolicitud, cantidad]) => ({
+        estadoSolicitud,
+        cantidad
+      }))
+    };
+  }
+
+
 }
