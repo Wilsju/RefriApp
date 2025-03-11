@@ -16,7 +16,7 @@
 
   <!-- Menú lateral (móvil) -->
   <div id="menu"
-       class="z-50 fixed inset-y-0 left-0 z-300 w-64 bg-white   transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:flex md:flex-grow md:justify-center">
+       class="z-50 fixed inset-y-0 left-0 z-300 w-64 bg-white transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:flex md:flex-grow md:justify-center">
 
     <div class="md:hidden flex flex-col items-center py-4">
       <img src="/pngegg.png" alt="Logo" class="w-20 h-20" routerLink="home" (click)="cerrarMenu()">
@@ -41,7 +41,7 @@
       }
     </ul>
 
-    <!-- Botones de autenticación (solo en móvil) -->
+    <!-- Menú de perfil (solo en móvil) -->
     <div class="md:hidden flex flex-col space-y-2 p-4">
       @if (rolActual() == null) {
         <a routerLink="login" (click)="cerrarMenu()"
@@ -50,13 +50,15 @@
         <a routerLink="registrar" (click)="cerrarMenu()"
            class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
       } @else {
+        <a routerLink="misCitas" (click)="cerrarMenu()"
+           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Mis Citas</a>
         <span (click)="CerrarSecion()" (click)="cerrarMenu()"
               class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
       }
     </div>
   </div>
 
-  <!-- Botones de autenticación (solo en escritorio) -->
+  <!-- Botones de autenticación y perfil (solo en escritorio) -->
   <div class="hidden md:flex flex-row space-x-2 ml-auto">
     @if (rolActual() == null) {
       <a routerLink="login" (click)="cerrarMenu()"
@@ -65,8 +67,39 @@
       <a routerLink="registrar" (click)="cerrarMenu()"
          class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
     } @else {
-      <span (click)="CerrarSecion()" (click)="cerrarMenu()"
-            class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
+      <!-- Botón de perfil con dropdown -->
+      <div class="relative">
+        <button (click)="toggleProfileMenu()" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500 focus:outline-none">
+          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"> <!--icono de perfil-->
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+            </svg>
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+
+        <!-- Menú desplegable del perfil -->
+        <div *ngIf="isProfileMenuOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+          @if(rolActual()== 'cliente'){
+          <a routerLink="/citas" (click)="cerrarProfileMenu()"
+             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+            Mis Citas
+          </a>
+
+            <a routerLink="/perfil" (click)="cerrarProfileMenu()"
+               class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
+              Perfil
+            </a>
+          }
+          <div (click)="CerrarSecion()" (click)="cerrarProfileMenu()"
+               class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white cursor-pointer">
+            Cerrar Sesión
+          </div>
+        </div>
+      </div>
     }
   </div>
 </div>
