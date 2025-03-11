@@ -37,9 +37,23 @@
             <!-- Botón -->
             <button
               routerLink="{{serv.id}}"
-              class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
+              class="w-full  bg-gradient-to-r from-black to-blue-500/90 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
               Solicitar
             </button>
+          }
+          @else if(usuarioActual() =="admin"){
+            <button
+              routerLink="/reportes"
+              class="w-full  bg-gradient-to-r from-black to-blue-500/90 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
+              Ver reportes : Admin
+            </button>
+          }@else{
+            <button
+              routerLink="/login"
+              class="w-full  bg-gradient-to-r from-black to-blue-500/90 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
+             Adquirir
+            </button>
+            <small class="text-center text-red-700/80">Debes iniciar seccion!</small>
           }
         </div>
       } @empty {

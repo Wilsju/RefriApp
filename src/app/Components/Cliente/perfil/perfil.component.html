@@ -1,0 +1,265 @@
+
+
+<!--<div class="bg-white rounded-lg shadow-sm max-w-screen-lg mx-auto">-->
+<!--  <div class="bg-white rounded-lg shadow-sm p-6 max-w-lg mx-auto border-blue-600 border">-->
+<!--    <div class="flex items-center justify-between mb-6">-->
+<!--      <h2 class="text-2xl font-medium text-gray-800 flex items-center gap-2">-->
+<!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"-->
+<!--             class="size-6">-->
+<!--          <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/>-->
+<!--        </svg>-->
+
+<!--        Información del Cliente-->
+<!--      </h2>-->
+<!--      <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">ID: {{ cliente.id }}</span>-->
+<!--    </div>-->
+
+<!--    <div class="space-y-4">-->
+<!--      <div class="flex items-center gap-2">-->
+<!--        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"-->
+<!--             xmlns="http://www.w3.org/2000/svg">-->
+<!--          <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                d="M12 14c2.5 0 4.5-2 4.5-4.5S14.5 5 12 5 7.5 7 7.5 9.5 9.5 14 12 14zm0 2c-4 0-7 2-7 5h14c0-3-3-5-7-5z"></path>-->
+<!--        </svg>-->
+<!--        <div>-->
+<!--          <div class="text-sm text-gray-500">Nombre</div>-->
+<!--          <div class="text-gray-800 font-medium">{{ cliente.Nombre }}</div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex items-center gap-2">-->
+<!--        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"-->
+<!--             class="size-6">-->
+<!--          <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/>-->
+<!--        </svg>-->
+
+<!--        <div>-->
+<!--          <div class="text-sm text-gray-500">Email</div>-->
+<!--          <div class="text-gray-800">{{ cliente.email }}</div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="flex items-center gap-2">-->
+<!--        📍-->
+<!--        <div>-->
+<!--          <div class="text-sm text-gray-500">Dirección</div>-->
+<!--          <div class="text-gray-800">{{ cliente.Direccion }}</div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--      <div class="grid grid-cols-2 gap-4">-->
+<!--        <div class="flex items-center gap-2">-->
+<!--          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+<!--               stroke="currentColor" class="size-6">-->
+<!--            <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>-->
+<!--          </svg>-->
+
+<!--          <div>-->
+<!--            <div class="text-sm text-gray-500">Teléfono</div>-->
+<!--            <div class="text-gray-800">{{ cliente.Telefono }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="flex items-center gap-2">-->
+<!--          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+<!--               stroke="currentColor" class="size-6">-->
+<!--            <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                  d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z"/>-->
+<!--          </svg>-->
+
+<!--          <div>-->
+<!--            <div class="text-sm text-gray-500">Teléfono Adicional</div>-->
+<!--            <div class="text-gray-800">{{ cliente.AuxTelefono ?? "&#45;&#45;" }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="mt-8">-->
+<!--    <h3 class="text-xl font-semibold text-gray-800">Mis Citas</h3>-->
+
+<!--    <div class="mt-4 space-y-4">-->
+<!--      @for (cita of citas; track $index) {-->
+<!--        <div class="bg-gray-100 p-4 rounded-lg shadow-sm flex items-center justify-between">-->
+<!--          <div>-->
+<!--            <div class="text-sm text-gray-500">Fecha</div>-->
+<!--            <div class="text-gray-800 font-light">{{ cita.Solicitudes.Fecha }}</div>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <div class="text-sm text-gray-500">Servicio</div>-->
+<!--            <div class="text-gray-800">{{ cita.Solicitudes.Servicios.Nombre }}</div>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <div class="text-sm text-gray-500">Estado</div>-->
+<!--            <span class="px-3 py-1 rounded-full text-sm font-semibold"-->
+<!--                  [ngClass]="{-->
+<!--              'bg-yellow-100 text-yellow-800': cita.Estado === EstadoCita.Pendiente,-->
+<!--              'bg-green-100 text-green-800': cita.Estado ===  EstadoCita.Completada,-->
+<!--              'bg-red-100 text-red-800': cita.Estado === EstadoCita.Cancelada-->
+<!--            }">-->
+<!--            {{ cita.Estado }}-->
+<!--          </span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      } @empty {-->
+<!--        <div>-->
+<!--          <div class="text-sm text-gray-500">Sin citas</div>-->
+<!--        </div>-->
+<!--      }-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="p-6 rounded-xl shadow-lg max-w-screen-lg mx-auto">
+  <div class="bg-white rounded-xl p-6 max-w-lg mx-auto shadow-lg  border-2 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-xl">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold text-blue-800 flex items-center gap-2 animate-fade-in">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="size-7 text-blue-600 animate-pulse">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/>
+        </svg>
+
+        Información del Cliente
+      </h2>
+      <span class="px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold shadow-sm ring-2 ring-blue-200 animate-bounce">
+        ❄️
+        ID: {{ cliente.id }}
+      </span>
+    </div>
+
+    <div class="space-y-5">
+      <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 14c2.5 0 4.5-2 4.5-4.5S14.5 5 12 5 7.5 7 7.5 9.5 9.5 14 12 14zm0 2c-4 0-7 2-7 5h14c0-3-3-5-7-5z"></path>
+        </svg>
+        <div class="flex-1">
+          <div class="text-sm text-blue-500 font-medium">Nombre</div>
+          <div class="text-gray-800 font-semibold text-lg">{{ cliente.Nombre }}</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="size-6 text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/>
+        </svg>
+        <div class="flex-1">
+          <div class="text-sm text-blue-500 font-medium">Email</div>
+          <div class="text-gray-800 font-medium">{{ cliente.email }}</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+        <span class="text-2xl">📍</span>
+        <div class="flex-1">
+          <div class="text-sm text-blue-500 font-medium">Dirección</div>
+          <div class="text-gray-800 font-medium">{{ cliente.Direccion }}</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="size-6 text-blue-600">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+          </svg>
+          <div class="flex-1">
+            <div class="text-sm text-blue-500 font-medium">Teléfono</div>
+            <div class="text-gray-800 font-medium">{{ cliente.Telefono }}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="size-6 text-blue-600">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z"/>
+          </svg>
+          <div class="flex-1">
+            <div class="text-sm text-blue-500 font-medium">Teléfono Adicional</div>
+            <div class="text-gray-800 font-medium">{{ cliente.AuxTelefono ?? "--" }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 bg-white p-6 rounded-xl shadow-md transform hover:scale-[1.01] transition-all duration-300">
+    <h3 class="text-xl font-bold text-blue-800 mb-6 flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-600">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+      </svg>
+      Mis Citas
+    </h3>
+
+    <div class="mt-4 space-y-4 ">
+      @for (cita of citas; track $index) {
+        <div
+          class="bg-white p-4 rounded-lg shadow-md border-l-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4  hover:-translate-y-1 transition-all"
+          [ngClass]="{
+            'border-l-yellow-500': cita.Estado === EstadoCita.Pendiente,
+            'border-l-green-500': cita.Estado === EstadoCita.Completada,
+            'border-l-red-500': cita.Estado === EstadoCita.Cancelada
+          }"
+          >
+          <div class="flex items-center gap-3">
+            <div class="bg-blue-100 p-2 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-blue-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm text-blue-500 font-medium">Fecha</div>
+              <div class="text-gray-800 font-semibold">{{ cita.Solicitudes.Fecha }}</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-indigo-100 p-2 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-indigo-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm text-blue-500 font-medium">Servicio</div>
+              <div class="text-gray-800 font-semibold">{{ cita.Solicitudes.Servicios.Nombre }}</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="text-sm text-blue-500 font-medium">Estado</div>
+            <span class="px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm inline-flex items-center gap-1.5"
+                  [ngClass]="{
+                    'bg-yellow-100 text-yellow-800 ring-2 ring-yellow-200': cita.Estado === EstadoCita.Pendiente,
+                    'bg-green-100 text-green-800 ring-2 ring-green-200': cita.Estado === EstadoCita.Completada,
+                    'bg-red-100 text-red-800 ring-2 ring-red-200': cita.Estado === EstadoCita.Cancelada
+                  }">
+
+              {{ cita.Estado }}
+            </span>
+          </div>
+        </div>
+      } @empty {
+        <div class="p-6 text-center bg-gray-50 rounded-lg border border-gray-200 animate-pulse">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12 text-gray-400 mx-auto mb-3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+          </svg>
+          <div class="text-gray-500 font-medium text-lg">No tienes citas programadas</div>
+          <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 shadow-md">
+            Programar una cita
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>

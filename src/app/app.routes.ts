@@ -9,7 +9,7 @@ import {CitasComponent} from './Components/citas/citas.component';
 import {ReportesComponent} from './Components/Admin/reportes/reportes.component';
 import {rutaSeguraGuard} from './Guards/ruta-segura.guard';
 import {AddServiceComponent} from './Components/Admin/add-service/add-service.component';
-import {PerfilComponent} from './Components/perfil/perfil.component';
+import {PerfilComponent} from './Components/Cliente/perfil/perfil.component';
 
 
 export const routes: Routes = [

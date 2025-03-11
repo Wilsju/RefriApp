@@ -51,8 +51,9 @@
            class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
       } @else {
         <a routerLink="misCitas" (click)="cerrarMenu()"
-           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Mis Citas</a>
-        <span (click)="CerrarSecion()" (click)="cerrarMenu()"
+           class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Mis
+          Citas</a>
+        <span (click)="CerrarSecion()"
               class="text-blue-700 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center cursor-pointer">Cerrar Sesión</span>
       }
     </div>
@@ -62,44 +63,142 @@
   <div class="hidden md:flex flex-row space-x-2 ml-auto">
     @if (rolActual() == null) {
       <a routerLink="login" (click)="cerrarMenu()"
-         class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Iniciar
+         class="text-blue-50 border  bg-gradient-to-tr from-blue-900 to-gray-700   rounded-lg px-4 py-2 hover:text-white transition block text-center">Iniciar
         Sesión</a>
       <a routerLink="registrar" (click)="cerrarMenu()"
-         class="text-blue-500 border border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
+         class="text-blue-500 border  border-blue-500 rounded-lg px-4 py-2 hover:bg-blue-500 hover:text-white transition block text-center">Registrar</a>
     } @else {
-      <!-- Botón de perfil con dropdown -->
+      <!-- Botón de perfil de cliente con dropdown -->
       <div class="relative">
-        <button (click)="toggleProfileMenu()" class="flex items-center space-x-2 text-gray-700 hover:text-blue-500 focus:outline-none">
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"> <!--icono de perfil-->
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-            </svg>
+
+        <button (click)="toggleProfileMenu()"
+                class="flex items-center space-x-3 px-3 py-2 rounded-full bg-white border border-gray-200 shadow-sm hover:bg-blue-50 hover:border-blue-200 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 group">
+          <div
+            class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white shadow-sm">
+
+            @if (rolActual() === "cliente") {
+              <span class="font-medium text-sm">
+                {{ clienteActual?.Nombre?.[0] ?? "C" }}
+              </span>
+
+            } @else {
+              <span class="font-medium text-sm">
+                A
+              </span>
+            }
+
           </div>
 
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          <div class="flex flex-col items-start text-left">
+                  <span
+                    class="text-sm font-medium text-gray-800 group-hover:text-blue-700 transition-colors duration-200">
+                    {{rolActual() === "cliente" ?  clienteActual?.Nombre ?? "Cliente" : "Admin" }}
+                  </span>
+
+          </div>
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-5 w-5 text-gray-500 group-hover:text-blue-600 transition-all duration-200"
+               [ngClass]="{'rotate-180': isProfileMenuOpen}"
+               viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"/>
           </svg>
         </button>
 
-        <!-- Menú desplegable del perfil -->
-        <div *ngIf="isProfileMenuOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-          @if(rolActual()== 'cliente'){
-          <a routerLink="/citas" (click)="cerrarProfileMenu()"
-             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
-            Mis Citas
-          </a>
 
-            <a routerLink="/perfil" (click)="cerrarProfileMenu()"
-               class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">
-              Perfil
-            </a>
-          }
-          <div (click)="CerrarSecion()" (click)="cerrarProfileMenu()"
-               class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white cursor-pointer">
-            Cerrar Sesión
+        <!-- Menú desplegable del perfil -->
+        @if (isProfileMenuOpen) {
+          <div
+            class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-50 border border-gray-100 transform origin-top-right transition-all duration-200 animate-fade-in">
+            <div class="absolute -top-2 right-4 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-100"></div>
+
+            @if (rolActual() == 'cliente') {
+              <a routerLink="/citas" (click)="cerrarProfileMenu()"
+                 class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 transition-colors duration-150 group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor"
+                     class="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-700 transition-colors duration-150">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+                </svg>
+                <span class="group-hover:translate-x-1 transition-transform duration-150">Mis Citas</span>
+              </a>
+
+              <a routerLink="/perfil" (click)="cerrarProfileMenu()"
+                 class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 transition-colors duration-150 group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor"
+                     class="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-700 transition-colors duration-150">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+                </svg>
+                <span class="group-hover:translate-x-1 transition-transform duration-150">Perfil</span>
+              </a>
+
+              <div class="my-1 border-t border-gray-100"></div>
+            } @else {
+
+              <a routerLink="/citas" (click)="cerrarProfileMenu()"
+                 class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 transition-colors duration-150 group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor"
+                     class="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-700 transition-colors duration-150">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+                </svg>
+                <span class="group-hover:translate-x-1 transition-transform duration-150"> Citas</span>
+              </a>
+
+              <a routerLink="/reportes" (click)="cerrarProfileMenu()"
+                 class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 transition-colors duration-150 group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="w-5 h-5 mr-3 text-yellow-600 group-hover:text-blue-700 transition-colors duration-150">>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                </svg>
+                <span class="group-hover:translate-x-1 transition-transform duration-150">Reportes</span>
+              </a>
+
+              <a routerLink="/adminSolicitudes" (click)="cerrarProfileMenu()"
+                 class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 transition-colors duration-150 group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                     class="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-700 transition-colors duration-150">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+                </svg>
+
+
+                <span class="group-hover:translate-x-1 transition-transform duration-150">Solicitudes</span>
+              </a>
+
+              <div class="my-1 border-t border-gray-100"></div>
+            }
+
+            <div (click)="CerrarSecion()"
+                 class="flex items-center px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150 cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                   stroke="currentColor"
+                   class="w-5 h-5 mr-3 text-red-500 group-hover:text-red-600 transition-colors duration-150">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
+              </svg>
+              <span
+                class="font-medium group-hover:translate-x-1 transition-transform duration-150">Cerrar Sesión</span>
+            </div>
+
+
           </div>
-        </div>
+
+
+        }
       </div>
+
+      <div class=" hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <h2
+          class="text-1xl  font-black text-white text-center uppercase tracking-wider py-3 px-8 bg-gradient-to-r from-blue-500 to-blue-800 rounded-lg shadow-lg border border-blue-400">
+          Admin
+        </h2>
+      </div>
+
     }
   </div>
 </div>
