@@ -1,6 +1,7 @@
 import {Injectable, signal, WritableSignal} from '@angular/core';
 import {createClient, SupabaseClient} from '@supabase/supabase-js';
 import {environment} from '../../environments/environment';
+import {Cliente} from 'modelos/Cliente';
 
 
 @Injectable({providedIn: 'root'})
@@ -79,6 +80,22 @@ export class Autentificacion {
       return {id: null, error: "Cliente no encontrado"};
 
     }
+  }
+
+  async obtenerUsuario() {
+
+    const user = await this.supabase.auth.getUser();
+
+    const {data, error} = await this.supabase
+      .from('Usuarios')
+      .select('*')
+      .eq("AuthId", user.data.user?.id)
+      .limit(1);
+    let cliente  = data?.[0] as Cliente;
+    cliente.email = user.data.user?.email ?? "";
+
+    return {cliente : cliente, error: error};
+
   }
 
 }

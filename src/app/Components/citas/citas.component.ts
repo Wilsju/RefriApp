@@ -82,5 +82,17 @@ export class CitasComponent implements OnInit {
     this.citaUsar = cita;
   }
 
+  async CancelarCita(citaId: number) {
+    if (confirm("¿Seguro que deseas cancelar esta cita?")) {
+      const result = await this.clientServ.CancelarCita(citaId);
+      if (result) {
+        this.notificar.NotificarSucces("Cita cancelada");
+        await this.cargarCitas();
+      } else {
+        this.notificar.NotificarSucces("No se pudo cancelar la cita 😅");
+      }
+    }
+
+  }
 
 }

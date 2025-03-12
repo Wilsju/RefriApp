@@ -5,6 +5,7 @@ import {Servicio} from 'modelos/Servicio';
 import {EstadoSolicitud} from 'constantes/EstadoSolicitud';
 import {Autentificacion} from 'service/Autentication';
 import {Cita} from 'modelos/Cita';
+import {EstadoCita} from 'constantes/EstadoCita';
 
 
 @Injectable({providedIn: 'root'})
@@ -63,6 +64,22 @@ export class ClienteService {
     };
 
     return {citas: data.filter(x => x.Solicitudes.UsuarioId == idUsuario.id), error: error};
+  }
+
+
+  async CancelarCita(citaId : number){
+    const {data, error} = await this.supabase
+      .from('Citas')
+      .update(
+        {
+          'Estado': EstadoCita.Cancelada,
+        }
+      )
+      .eq("id",citaId)
+      .select("*");
+
+    return error === null;
+
   }
 }
 
